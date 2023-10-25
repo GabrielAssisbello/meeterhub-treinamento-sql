@@ -17,7 +17,7 @@ ISBN INT PRIMARY KEY AUTO_INCREMENT,
 titulo VARCHAR(60) NOT NULL,
 ano DATE,
 preço FLOAT(8) NOT NULL,
-nome_autor VARCHAR(60) NOT NULL,
+id_autor VARCHAR(60) NOT NULL,
 CONSTRAINT FK_livro_autor FOREIGN KEY (nome_autor) REFERENCES tb_autor(nome_autor) ON DELETE CASCADE ON UPDATE CASCADE ,
 nome_editora VARCHAR(60) NOT NULL,
 CONSTRAINT FK_livro_editora FOREIGN KEY (nome_editora) REFERENCES tb_editora(nome_editora) ON DELETE CASCADE ON UPDATE CASCADE 
@@ -27,12 +27,12 @@ CONSTRAINT FK_livro_editora FOREIGN KEY (nome_editora) REFERENCES tb_editora(nom
 CREATE TABLE tb_editora(
 nome_editora VARCHAR(200) PRIMARY KEY,
 endereco VARCHAR(60) NOT NULL,
-telefone IVARCHAR(20) NOT NULL,
+telefone VARCHAR(20) NOT NULL,
 URL VARCHAR(60) NOT NULL
 )DEFAULT CHARSET = utf-8;
 
 CREATE TABLE tb_deposito(
-cod_deposito INT PRIMARY KEY,
+id_deposito INT PRIMARY KEY,
 endereco VARCHAR(200) NOT NULL,
 telefone INT NOT NULL,
 ISBN INT NOT NULL,
