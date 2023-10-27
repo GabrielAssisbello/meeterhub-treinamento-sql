@@ -4,7 +4,7 @@
 
 -- criei um atributo id_autor como PK pois nome pode ocorrer de pessoas com nomes ''iguais''.
 CREATE TABLE tb_autor(
-id_autor VARCHAR(60) PRIMARY KEY AUTO_INCREMENT
+id_autor INT PRIMARY KEY AUTO_INCREMENT,
 nome_autor VARCHAR(60) NOT NULL,
 endereco VARCHAR(70),
 URL VARCHAR(200) NOT NULL,
@@ -38,7 +38,7 @@ CONSTRAINT FK_id_autor FOREIGN KEY (id_autor) REFERENCES tb_autor(id_autor) ON D
 -- usar nome como PK faz sentido aqui pois nome de empresas são únicos.
 -- fiz a mudança de nome_editora para id_editora.
 CREATE TABLE tb_editora(
-id_editora VARCHAR(200) PRIMARY KEY,
+id_editora INT PRIMARY KEY,
 endereco VARCHAR(60) NOT NULL,
 telefone VARCHAR(20) NOT NULL,
 URL VARCHAR(60) NOT NULL
@@ -82,7 +82,7 @@ CONSTRAINT FK_carrinho_idcliente FOREIGN KEY (id_cliente) REFERENCES tb_cliente(
 -- criei o atributo CPF e coloquei como PK pois todas as pessoas possuem apenas um CPF, fazendo assim ele único.
 -- fiz a mudança de cpf para id_cliente.
 CREATE TABLE tb_cliente(
-id_cliente VARCHAR(60)PRIMARY KEY AUTO_INCREMENT,
+id_cliente INT PRIMARY KEY AUTO_INCREMENT,
 email VARCHAR(60) NOT NULL,
 nome_cliente VARCHAR(60) NOT NULL,
 endereco VARCHAR(60),
