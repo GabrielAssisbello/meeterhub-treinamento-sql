@@ -71,7 +71,7 @@ CONSTRAINT FK_contem2 FOREIGN KEY (id_livro) REFERENCES tb_livro(id_livro) ON DE
 
 -- usei CPF como FK para distinguir as compras de cada cliente.
 CREATE TABLE tb_carrinho(
-id_carrinho INT NOT NULL,
+id_carrinho INT PRIMARY KEY,
 id_cliente INT NOT NULL,
 CONSTRAINT FK_carrinho_idcliente FOREIGN KEY (id_cliente) REFERENCES tb_cliente(id_cliente) ON DELETE CASCADE ON UPDATE CASCADE 
 );
