@@ -3,7 +3,7 @@
 CREATE TABLE tb_autor(
 id_autor INT PRIMARY KEY AUTO_INCREMENT,
 nome_autor VARCHAR(60) NOT NULL,
-endereco VARCHAR(70),
+endereco VARCHAR(70) NOT NULL,
 URL VARCHAR(200) NOT NULL,
 id_editora INT NOT NULL,
 CONSTRAINT FK_autor_editora FOREIGN KEY (id_editora) REFERENCES tb_editora(id_editora)
@@ -13,9 +13,9 @@ CONSTRAINT FK_autor_editora FOREIGN KEY (id_editora) REFERENCES tb_editora(id_ed
 -- fiz a mudança de ISBN PK para id_livro PK
 CREATE TABLE tb_livro(
 id_livro INT PRIMARY KEY,
-ISBN INT NOT NULL,
+ISBN VARCHAR(20)  NOT NULL,
 titulo VARCHAR(60) NOT NULL,
-ano DATE,
+ano DATE NOT NULL,
 preço FLOAT(8) NOT NULL,
 id_autor INT NOT NULL,
 CONSTRAINT FK_livro_autor FOREIGN KEY (id_autor) REFERENCES tb_autor(id_autor) ON DELETE CASCADE ON UPDATE CASCADE ,
@@ -82,6 +82,6 @@ CREATE TABLE tb_cliente(
 id_cliente INT PRIMARY KEY AUTO_INCREMENT,
 email VARCHAR(60) NOT NULL,
 nome_cliente VARCHAR(60) NOT NULL,
-endereco VARCHAR(60),
-telefone VARCHAR(20)
+endereco VARCHAR(60) NOT NULL,
+telefone VARCHAR(20) NOT NULL
 );
