@@ -3,10 +3,10 @@ const mysql = require('mysql2/promise');
 class ModeloCliente{
     constructor(){
         this.pool = mysql.createPool({
-            host:'127.0.0.1',
+            host:'192.168.0.176',
             user: 'root',
-            password:'',
-            database:'mcliente',
+            password:'gabriel',
+            database:'db_cliente',
         });
     }
 
@@ -14,8 +14,8 @@ class ModeloCliente{
         const connection = await this.pool.getConnection();
         try{
             const [resultado] = await connection.query(
-                'insert into clientes (nome, endereco, cidade) values(?, ?, ?)',
-                [cliente.nome, cliente.endereco, cliente.cidade]
+                'insert into clientes (email, nome_cliente, endereco, telefone) values(?, ?, ?, ?)',
+                [cliente.email, cliente.nome_cliente, cliente.endereco, cliente.telefone]
             );
             return resultado.insertId;
         } finally {
@@ -52,8 +52,8 @@ class ModeloCliente{
         const connection = await this.pool.getConnection();
         try{
             await connection.query(
-                'update clientes set nome = ?, endereco = ?, cidade = ? where id = ?',
-                [cliente.nome, cliente.endereco, cliente.cidade, id]
+                'update clientes set email = ?,nome_cliente = ?, endereco = ?, telefone = ? where id = ?',
+                [cliente.email, cliente.nome_cliente, cliente.endereco, cliente.telefone, id]
             );
             return true;
         } finally {
