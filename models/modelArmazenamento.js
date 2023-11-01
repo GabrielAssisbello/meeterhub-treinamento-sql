@@ -14,7 +14,7 @@ class ModeloArmazenamento{
         const connection = await this.pool.getConnection();
         try{
             const [resultado] = await connection.query(
-                'insert into tb_armazenamenti (id.livro, id_deposito) values(?, ?)',
+                'insert into tb_armazenamento (id.livro, id_deposito) values(?, ?)',
                 [armazenamento.id.livro, armazenamento.id_deposito]
             );
             return resultado.insertId;

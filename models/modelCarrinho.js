@@ -14,7 +14,7 @@ class ModeloCarrinho{
         const connection = await this.pool.getConnection();
         try{
             const [resultado] = await connection.query(
-                'insert into tb_armazenamenti (id_carrinho, id_cliente) values(?, ?)',
+                'insert into tb_carrinho (id_carrinho, id_cliente) values(?, ?)',
                 [carrinho.id_carrinho, carrinho.id_cliente]
             );
             return resultado.insertId;

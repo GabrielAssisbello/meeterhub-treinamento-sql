@@ -2,7 +2,7 @@ const ModeloArmazenamento = require('../models/modelArmazenamento.js');
 
 class ControladorArmazenamento{
     async criarArmazenamento( req, res ){
-        const Autor = req.body;
+        const Armazenamento = req.body;
         try{
             const idArmazenamento= await ModeloArmazenamento.criarArmazenamento(Armazenamento);
             res.status(201).json({ id: idArmazenamento});
@@ -13,8 +13,8 @@ class ControladorArmazenamento{
 
     async obterTodosArmazenamentos( req, res ){
         try{
-            const armazenamentos = await ModeloAutor.obterTodosArmazenamentos();
-            res.status(200).json(autores);
+            const armazenamentos = await ModeloArmazenamento.obterTodosArmazenamentos();
+            res.status(200).json(armazenamentos);
         } catch( erro ){
             res.status(500).json({ erro: 'Erro ao buscar todos os armazenamentos'});
         }
@@ -27,7 +27,7 @@ class ControladorArmazenamento{
             if( armazenamento ){
                 res.status(200).json(armazenamento);
             } else {
-                res.status(404).json({erro: 'armazenamento não encontrado'})
+                res.status(404).json({erro: 'Armazenamento não encontrado'})
             }
         } catch( erro ){
             res.status(500).json({erro: 'Erro ao buscar o armazenamento'});
