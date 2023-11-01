@@ -3,7 +3,7 @@ const mysql = require('mysql2/promise');
 class ModeloCliente{
     constructor(){
         this.pool = mysql.createPool({
-            host:'192.168.0.176',
+            host:'127.0.0.1',
             user: 'root',
             password:'gabriel',
             database:'db_cliente',

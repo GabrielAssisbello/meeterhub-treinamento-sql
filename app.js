@@ -1,12 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const controladorCliente = require('./controller.js');
-const controladorAutor = require('./controller.js');
-const controladorEditora = require('./controller.js');
-const controladorLivro = require('./controller.js');
+const controladorCliente = require('./controllers/controllerCliente.js');
+const controladorAutor = require('./controllers/controllerAutor.js');
+const controladorEditora = require('./controllers/controllerEditora.js');
+const controladorLivro = require('./controllers/controllerLivro.js');
 
 const app = express(); 
-const porta = 3307; 
+const porta = 3000; 
 
 app.use(bodyParser.json());
 
@@ -15,7 +15,7 @@ app.get('/clientes', controladorCliente.obterTodosClientes);
 app.get('/clientes/:id', controladorCliente.obterClientePorId);
 app.put('/clientes/:id', controladorCliente.atualizarCliente);
 app.delete('/clientes/:id', controladorCliente.excluirCliente);
-//
+
 app.post('/editoras', controladorEditora.criarEditora);
 app.get('/editoras', controladorEditora.obterTodosEditoras);
 app.get('/editoras/:id', controladorEditora.obterEditoraPorId);

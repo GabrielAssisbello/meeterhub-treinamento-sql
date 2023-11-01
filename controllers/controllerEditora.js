@@ -1,4 +1,4 @@
-const ModeloEditora = require('./model.js');
+const ModeloEditora = require('../models/modelCliente.js');
 
 
 class ControladorEditora{

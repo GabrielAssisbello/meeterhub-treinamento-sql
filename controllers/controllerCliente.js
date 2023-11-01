@@ -1,4 +1,4 @@
-const ModeloCliente = require('./model.js');
+const ModeloCliente = require('../models/modelCliente.js');
 
 class ControladorCliente{
     async criarCliente( req, res ){
