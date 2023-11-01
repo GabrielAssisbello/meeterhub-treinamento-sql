@@ -36,7 +36,7 @@ class ControladorArmazenamento{
 
     async atualizarArmazenamento( req, res ){
         const id = req.params.id;
-        const autor = req.body; 
+        const armazenamento = req.body; 
         try{
             const resultado = await ModeloAutor.atualizarArmanezamento(id_livro, id_deposito);
             if( resultado ){
