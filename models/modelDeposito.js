@@ -52,7 +52,7 @@ class ModeloDeposito{
         const connection = await this.pool.getConnection();
         try{
             await connection.query(
-                'update tb_autor set id_deposito = ? , endereco = ? , telefone = ? , id_livro = ? where id = ?',
+                'update tb_deposito set id_deposito = ? , endereco = ? , telefone = ? , id_livro = ? where id = ?',
                 [deposito.id_deposito, deposito.endereco, deposito.telefone, deposito.id_livro]
             );
             return true;

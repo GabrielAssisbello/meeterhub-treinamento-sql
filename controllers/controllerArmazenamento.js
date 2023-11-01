@@ -38,7 +38,7 @@ class ControladorArmazenamento{
         const id = req.params.id;
         const armazenamento = req.body; 
         try{
-            const resultado = await ModeloAutor.atualizarArmanezamento(id_livro, id_deposito);
+            const resultado = await ModeloArmazenamento.atualizarArmanezamento(id_livro, id_deposito);
             if( resultado ){
                 res.status(200).json({msg: 'Armazenamento atualizado com sucesso'});
             } else {
@@ -52,7 +52,7 @@ class ControladorArmazenamento{
     async excluirArmazenamento( req, res ){
         const id = req.params.id;
         try{
-            const resultado = await ModeloAutor.excluirArmazenamento(id);
+            const resultado = await ModeloArmazenamento.excluirArmazenamento(id);
             if( resultado ){
                 res.status(200).json({msg: 'Armazenamento excluido com sucesso'});
             } else {

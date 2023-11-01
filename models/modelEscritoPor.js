@@ -48,7 +48,7 @@ class ModeloEscritoPor{
         }
     }
 
-    async atualizarEscrito_por(id, cliente) {
+    async atualizarEscrito_por(id, autor) {
         const connection = await this.pool.getConnection();
         try{
             await connection.query(

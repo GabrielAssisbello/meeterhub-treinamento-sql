@@ -10,7 +10,7 @@ class ModeloArmazenamento{
         });
     }
 
-    async criarArmazenamento(autor) {
+    async criarArmazenamento(armazenamento) {
         const connection = await this.pool.getConnection();
         try{
             const [resultado] = await connection.query(
@@ -52,7 +52,7 @@ class ModeloArmazenamento{
         const connection = await this.pool.getConnection();
         try{
             await connection.query(
-                'update tb_autor set id.livro = ? , id_deposito = ? where id = ?',
+                'update tb_armazenamento set id.livro = ? , id_deposito = ? where id = ?',
                 [armazenamento.id.livro, armazenamento.id_deposito]
             );
             return true;

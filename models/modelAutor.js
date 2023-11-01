@@ -48,7 +48,7 @@ class ModeloAutor{
         }
     }
 
-    async atualizarAutor(id, cliente) {
+    async atualizarAutor(id, autor) {
         const connection = await this.pool.getConnection();
         try{
             await connection.query(

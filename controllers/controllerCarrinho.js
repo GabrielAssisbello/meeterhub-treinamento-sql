@@ -25,7 +25,7 @@ class ControladorCarrinho{
         try{
             const carrinho = await ModeloCarrinho.obterCarrinhoPorId(id);
             if( carrinho ){
-                res.status(200).json(armazenamento);
+                res.status(200).json(carrinho);
             } else {
                 res.status(404).json({erro: 'carrinho não encontrado'})
             }

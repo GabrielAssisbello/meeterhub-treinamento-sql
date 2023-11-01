@@ -16,7 +16,7 @@ class ControladorDeposito{
             const depositos = await ModeloDeposito.obterTodosDepositos();
             res.status(200).json(depositos);
         } catch( erro ){
-            res.status(500).json({ erro: 'Erro ao buscar todos os armazenamentos'});
+            res.status(500).json({ erro: 'Erro ao buscar todos os depositos'});
         }
     }
 

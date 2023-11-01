@@ -10,7 +10,7 @@ class ModeloCarrinho{
         });
     }
 
-    async criarCarrinho(autor) {
+    async criarCarrinho(carrinho) {
         const connection = await this.pool.getConnection();
         try{
             const [resultado] = await connection.query(
@@ -48,11 +48,11 @@ class ModeloCarrinho{
         }
     }
 
-    async atualizarCarrinho(id, cliente) {
+    async atualizarCarrinho(id, carrinho) {
         const connection = await this.pool.getConnection();
         try{
             await connection.query(
-                'update tb_autor set id.carrinho = ? , id_cliente = ? where id = ?',
+                'update tb_carrinho set id.carrinho = ? , id_cliente = ? where id = ?',
                 [carrinho.id_carrinho, carrinho.id_cliente]
             );
             return true;

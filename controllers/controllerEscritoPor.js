@@ -11,7 +11,7 @@ class ControladorEscritoPor{
         }
     }
 
-    async obterTodosArmazenamentos( req, res ){
+    async obterTodosEscritoPors( req, res ){
         try{
             const EscritoPors = await ModeloEscritoPor.obterTodosEscritoPors();
             res.status(200).json(EscritoPors);
@@ -25,12 +25,12 @@ class ControladorEscritoPor{
         try{
             const escritopor = await ModeloEscritoPor.obterEscritoPorPorId(id);
             if( escritopor ){
-                res.status(200).json(armazenamento);
+                res.status(200).json(escritopor);
             } else {
                 res.status(404).json({erro: 'Escrito Por não encontrado'})
             }
         } catch( erro ){
-            res.status(500).json({erro: 'Erro ao buscar o armazenamento'});
+            res.status(500).json({erro: 'Erro ao buscar o Escrito Por'});
         }
     }
 
