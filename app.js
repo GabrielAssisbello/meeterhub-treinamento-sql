@@ -39,16 +39,3 @@ app.listen( porta, () => {
 })
 
 
-/*
-criação da tabela 
-CREATE DATABASE IF NOT EXISTS mcliente;
-
-USE mcliente;
-
-CREATE TABLE IF NOT EXISTS clientes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(40) NOT NULL,
-    endereco VARCHAR(40),
-    cidade VARCHAR(30)
-);
-*/

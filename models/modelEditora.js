@@ -1,6 +1,6 @@
 const mysql = require('mysql2/promise');
 
-class ModeloCliente{
+class ModeloEditora{
     constructor(){
         this.pool = mysql.createPool({
             host:'127.0.0.1',
@@ -10,12 +10,12 @@ class ModeloCliente{
         });
     }
 
-    async criarCliente(cliente) {
+    async criarEditora(autor) {
         const connection = await this.pool.getConnection();
         try{
             const [resultado] = await connection.query(
-                'insert into tb_cliente (email, nome_cliente, endereco, telefone) values(?, ?, ?, ?)',
-                [cliente.email, cliente.nome_cliente, cliente.endereco, cliente.telefone]
+                'insert into tb_autor (nome_autor, endereco, URL, id_editora) values(?, ?, ?, ?)',
+                [autor.nome, autor.endereco, autor.url, autor.id_editora]
             );
             return resultado.insertId;
         } finally {
@@ -23,11 +23,11 @@ class ModeloCliente{
         }
     }
 
-    async obterTodosClientes() {
+    async obterTodosAutores() {
         const connection = await this.pool.getConnection();
         try{
             const [registros] = await connection.query(
-                'select * from tb_cliente'
+                'select * from tb_autor'
             );
             return registros;
         } finally {
@@ -35,11 +35,11 @@ class ModeloCliente{
         }
     }
 
-    async obterClientePorId(id) {
+    async obterAutorPorId(id) {
         const connection = await this.pool.getConnection();
         try{
             const [registros] = await connection.query(
-                'select * from tb_cliente where id = ?',
+                'select * from tb_autor where id = ?',
                 [id]
             );
             return registros[0];
@@ -48,12 +48,12 @@ class ModeloCliente{
         }
     }
 
-    async atualizarCliente(id, cliente) {
+    async atualizarAutor(id, cliente) {
         const connection = await this.pool.getConnection();
         try{
             await connection.query(
-                'update tb_cliente set email = ?,nome_cliente = ?, endereco = ?, telefone = ? where id = ?',
-                [cliente.email, cliente.nome_cliente, cliente.endereco, cliente.telefone, id]
+                'update tb_autor set nome_autor = ?, endereco = ?, URL = ?, id_editora = ? where id = ?',
+                [autor.nome_autor, autor.endereco, autor.url, autor.id_editora]
             );
             return true;
         } finally {
@@ -61,11 +61,11 @@ class ModeloCliente{
         }
     }
 
-    async excluirCliente(id) {
+    async excluirAutor(id) {
         const connection = await this.pool.getConnection();
         try{
             await connection.query(
-                'delete from tb_cliente where id = ?',
+                'delete from tb_autor where id = ?',
                 [id]
             );
             return true;
@@ -75,4 +75,4 @@ class ModeloCliente{
     }
 }
 
-module.exports = new ModeloCliente();
+module.exports = new ModeloAutor();
