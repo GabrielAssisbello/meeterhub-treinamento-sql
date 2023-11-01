@@ -1,4 +1,4 @@
-const ModeloEditora = require('../models/modelCliente.js');
+const ModeloEditora = require('../models/modelEditora.js');
 
 
 class ControladorEditora{
@@ -13,7 +13,7 @@ class ControladorEditora{
     }
    
 
-    async obterTodosEditora( req, res ){
+    async obterTodosEditoras( req, res ){
         try{
             const editora = await ModeloEditora.obterTodosEditoras();
             res.status(200).json(editoras);

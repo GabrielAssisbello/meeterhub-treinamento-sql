@@ -1,8 +1,8 @@
-const ModeloLivro = require('../models/modelCliente.js');
+const ModeloLivro = require('../models/modelLivro.js');
 
 
-class ControladorEditora{
-    async criarLirvo( req, res ){
+class ControladorLivro{
+    async criarLivro( req, res ){
         const livro = req.body;
         try{
             const idLivro = await ModeloLivro.criarlivro(livro);
@@ -13,7 +13,7 @@ class ControladorEditora{
     }
    
 
-    async obterTodosLivro( req, res ){
+    async obterTodosLivros( req, res ){
         try{
             const livro = await ModeloEditora.obterTodosLivros();
             res.status(200).json(livros);

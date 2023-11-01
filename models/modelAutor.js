@@ -14,7 +14,7 @@ class ModeloAutor{
         const connection = await this.pool.getConnection();
         try{
             const [resultado] = await connection.query(
-                'insert into tb_autor (nome_autor, endereco, URL, id_editora) values(?, ?, ?, ?)',
+                'insert into tb_autor (nome_autor, endereco, url, id_editora) values(?, ?, ?, ?)',
                 [autor.nome, autor.endereco, autor.url, autor.id_editora]
             );
             return resultado.insertId;

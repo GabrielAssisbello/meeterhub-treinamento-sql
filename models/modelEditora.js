@@ -10,12 +10,12 @@ class ModeloEditora{
         });
     }
 
-    async criarEditora(autor) {
+    async criarEditora(editora) {
         const connection = await this.pool.getConnection();
         try{
             const [resultado] = await connection.query(
-                'insert into tb_autor (nome_autor, endereco, URL, id_editora) values(?, ?, ?, ?)',
-                [autor.nome, autor.endereco, autor.url, autor.id_editora]
+                'insert into tb_editora (id_editora, endereco, telefone, url) values(?, ?, ?, ?)',
+                [editora.editora_id, editora.endereco, editora_telefone, editora_url]
             );
             return resultado.insertId;
         } finally {
@@ -23,11 +23,11 @@ class ModeloEditora{
         }
     }
 
-    async obterTodosAutores() {
+    async obterTodosEditoras() {
         const connection = await this.pool.getConnection();
         try{
             const [registros] = await connection.query(
-                'select * from tb_autor'
+                'select * from tb_editora'
             );
             return registros;
         } finally {
@@ -35,11 +35,11 @@ class ModeloEditora{
         }
     }
 
-    async obterAutorPorId(id) {
+    async obterEditoraPorId(id) {
         const connection = await this.pool.getConnection();
         try{
             const [registros] = await connection.query(
-                'select * from tb_autor where id = ?',
+                'select * from tb_editora where id = ?',
                 [id]
             );
             return registros[0];
@@ -48,12 +48,12 @@ class ModeloEditora{
         }
     }
 
-    async atualizarAutor(id, cliente) {
+    async atualizarEditora(id, editora) {
         const connection = await this.pool.getConnection();
         try{
             await connection.query(
-                'update tb_autor set nome_autor = ?, endereco = ?, URL = ?, id_editora = ? where id = ?',
-                [autor.nome_autor, autor.endereco, autor.url, autor.id_editora]
+                'update tb_editora set editora_id = ?, endereco = ?,telefone = ?, url = ? where id = ?',
+                [editora.editora_id, editora.endereco, editora_telefone, editora_url]
             );
             return true;
         } finally {
@@ -61,11 +61,11 @@ class ModeloEditora{
         }
     }
 
-    async excluirAutor(id) {
+    async excluirEditora(id) {
         const connection = await this.pool.getConnection();
         try{
             await connection.query(
-                'delete from tb_autor where id = ?',
+                'delete from tb_editora where id = ?',
                 [id]
             );
             return true;
@@ -75,4 +75,4 @@ class ModeloEditora{
     }
 }
 
-module.exports = new ModeloAutor();
+module.exports = new ModeloEditora();
