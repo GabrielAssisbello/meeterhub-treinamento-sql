@@ -2,19 +2,19 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const porta = 3000; 
-module.exports = app;
 app.use(bodyParser.json());
+module.exports = app;
 
 // definindo as rotas 
-const clienteRoutes = require('./routes/clienteRoutes.js');
-const editoraRoutes = require('./routes/editoraRoutes.js');
-const autorRoutes = require('./routes/autorRoutes.js');
-const livroRoutes = require('./routes/livroRoutes.js');
-const armazenamentoRoutes = require('./routes/armazenamentoRoutes.js');
-const carrinhoRoutes = require('./routes/carrinhoRoutes.js');
-const contemRoutes = require('./routes/contemRoutes.js');
-const depositoRoutes = require('./routes/depositoRoutes.js');
-const escritoPorRoutes = require('./routes/escritoPorRoutes.js');
+const clienteRoutes = require('./router/clienteRoutes.js');
+const editoraRoutes = require('./router/editoraRoutes.js');
+const autorRoutes = require('./router/autorRoutes.js');
+const livroRoutes = require('./router/livroRoutes.js');
+const armazenamentoRoutes = require('./router/armazenamentoRoutes.js');
+const carrinhoRoutes = require('./router/carrinhoRoutes.js');
+const contemRoutes = require('./router/contemRoutes.js');
+const depositoRoutes = require('./router/depositoRoutes.js');
+const escritoPorRoutes = require('./router/escritoPorRoutes.js');
 
 //usando as rotas
 app.use(clienteRoutes);
