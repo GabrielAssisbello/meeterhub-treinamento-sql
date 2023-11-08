@@ -3,29 +3,29 @@ const app = express();
 const bodyParser = require('body-parser');
 const porta = 3000; 
 app.use(bodyParser.json());
-module.exports = app;
+
 
 // definindo as rotas 
-const clienteRoutes = require('./router/clienteRoutes.js');
-const editoraRoutes = require('./router/editoraRoutes.js');
-const autorRoutes = require('./router/autorRoutes.js');
-const livroRoutes = require('./router/livroRoutes.js');
-const armazenamentoRoutes = require('./router/armazenamentoRoutes.js');
-const carrinhoRoutes = require('./router/carrinhoRoutes.js');
-const contemRoutes = require('./router/contemRoutes.js');
-const depositoRoutes = require('./router/depositoRoutes.js');
-const escritoPorRoutes = require('./router/escritoPorRoutes.js');
+const clienteRouter = require('./router/clienteRouter.js');
+const editoraRouter = require('./router/editoraRouter.js');
+const autorRouter = require('./router/autorRouter.js');
+const livroRouter = require('./router/livroRouter.js');
+const armazenamentoRouter = require('./router/armazenamentoRouter.js');
+const carrinhoRouter = require('./router/carrinhoRouter.js');
+const contemRouter = require('./router/contemRouter.js');
+const depositoRouter = require('./router/depositoRouter.js');
+const escritoPorRouter = require('./router/escritoPorRouter.js');
 
 //usando as rotas
-app.use(clienteRoutes);
-app.use(editoraRoutes);
-app.use(autorRoutes);
-app.use(livroRoutes);
-app.use(armazenamentoRoutes);
-app.use(carrinhoRoutes);
-app.use(contemRoutes);
-app.use(depositoRoutes);
-app.use(escritoPorRoutes);
+app.use(clienteRouter);
+app.use(editoraRouter);
+app.use(autorRouter);
+app.use(livroRouter);
+app.use(armazenamentoRouter);
+app.use(carrinhoRouter);
+app.use(contemRouter);
+app.use(depositoRouter);
+app.use(escritoPorRouter);
 
 app.listen( porta, () => {
     console.log(`servidor no ar na porta ${porta}`); 
