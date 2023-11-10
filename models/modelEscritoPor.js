@@ -1,9 +1,8 @@
-const mysql = require('mysql2/promise');
 const pool = require('../pool')
 
 class ModeloEscritoPor{
    
-    async criarEscritoPor(autor) {
+    async criarEscritoPor(escrito_por) {
         const connection = await pool.getConnection();
         try{
             const [resultado] = await connection.query(
@@ -41,11 +40,11 @@ class ModeloEscritoPor{
         }
     }
 
-    async atualizarEscrito_por(id, autor) {
+    async atualizarEscrito_por(id, escrito_por) {
         const connection = await pool.getConnection();
         try{
             await connection.query(
-                'update tb_autor set id.livro = ? , id_autor = ? where id = ?',
+                'update tb_autor set id.livro = ? , id_autor = ? where id_escrito_por = ?',
                 [escrito_por.id_livro, escrito_por.id_autor, autor.id, id]
             );
             return true;

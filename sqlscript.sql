@@ -36,6 +36,7 @@ CONSTRAINT FK_id_autor FOREIGN KEY (id_autor) REFERENCES tb_autor(id_autor) ON D
 -- fiz a mudança de nome_editora para id_editora.
 CREATE TABLE tb_editora(
 id_editora INT PRIMARY KEY,
+nome VARCHAR(20) NOT NULL,
 endereco VARCHAR(60) NOT NULL,
 telefone VARCHAR(20) NOT NULL,
 URL VARCHAR(60) NOT NULL

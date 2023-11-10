@@ -1,4 +1,3 @@
-const mysql = require('mysql2/promise');
 const pool = require('../pool')
 
 class ModeloEditora{
@@ -7,8 +6,8 @@ class ModeloEditora{
         const connection = await pool.getConnection();
         try{
             const [resultado] = await connection.query(
-                'insert into tb_editora (id_editora, endereco, telefone, url) values(?, ?, ?, ?)',
-                [editora.editora_id, editora.endereco, editora_telefone, editora_url]
+                'insert into tb_editora (id_editora, nome, endereco, telefone, url) values (?, ?, ?, ?, ?)',
+                [editora.id_editora, editora.nome, editora.endereco, editora.telefone, editora.url]
             );
             return resultado.insertId;
         } finally {
@@ -45,8 +44,8 @@ class ModeloEditora{
         const connection = await pool.getConnection();
         try{
             await connection.query(
-                'update tb_editora set editora_id = ?, endereco = ?,telefone = ?, url = ? where id = ?',
-                [editora.editora_id, editora.endereco, editora_telefone, editora_url, id]
+                'update tb_editora set editora_id = ?, endereco = ?,telefone = ?, url = ? where id_editora = ?',
+                [editora.id_editora, editora.endereco, editora.telefone, editora.url, id]
             );
             return true;
         } finally {
@@ -55,7 +54,7 @@ class ModeloEditora{
     }
 
     async excluirEditora(id) {
-        const connection = await pool.getConnection();
+        const connection = await this.pool.getConnection();
         try{
             await connection.query(
                 'delete from tb_editora where id_editora = ?',

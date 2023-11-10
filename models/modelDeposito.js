@@ -1,4 +1,3 @@
-const mysql = require('mysql2/promise');
 const pool = require('../pool')
 
 class ModeloDeposito{
@@ -45,7 +44,7 @@ class ModeloDeposito{
         const connection = await pool.getConnection();
         try{
             await connection.query(
-                'update tb_deposito set id_deposito = ? , endereco = ? , telefone = ? , id_livro = ? where id = ?',
+                'update tb_deposito set id_deposito = ? , endereco = ? , telefone = ? , id_livro = ? where id_deposito = ?',
                 [deposito.id_deposito, deposito.endereco, deposito.telefone, deposito.id_livro, id]
             );
             return true;

@@ -1,4 +1,3 @@
-const mysql = require('mysql2/promise');
 const pool = require('../pool')
 
 class ModeloArmazenamento{
@@ -41,12 +40,12 @@ class ModeloArmazenamento{
         }
     }
 
-    async atualizarArmazenamento(id, armazenamento) {
+    async atualizarArmazenamento(id_armazenamento, armazenamento) {
         const connection = await pool.getConnection();
         try{
             await connection.query(
-                'update tb_armazenamento set id.livro = ? , id_deposito = ? where id = ?',
-                [armazenamento.id.livro, armazenamento.id_deposito, id]
+                'update tb_armazenamento set id.livro = ? , id_deposito = ? where id_armazenamento = ?',
+                [armazenamento.id.livro, armazenamento.id_deposito, id_armazenamento]
             );
             return true;
         } finally {
@@ -54,12 +53,12 @@ class ModeloArmazenamento{
         }
     }
 
-    async excluirArmazenamento(id) {
+    async excluirArmazenamento(id_armazenamento) {
         const connection = await pool.getConnection();
         try{
             await connection.query(
                 'delete from tb_armazenamento where id_armazenamento = ?',
-                [id]
+                [id_armazenamento]
             );
             return true;
         } finally {

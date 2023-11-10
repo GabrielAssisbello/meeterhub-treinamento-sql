@@ -1,4 +1,3 @@
-const mysql = require('mysql2/promise');
 const pool = require('../pool')
 
 class ModeloCliente{
@@ -7,7 +6,7 @@ class ModeloCliente{
         const connection = await pool.getConnection();
         try{
             const [resultado] = await connection.query(
-                'insert into tb_cliente (id_cliente, email, nome_cliente, endereco, telefone) values(?, ?, ?, ?, ?)',
+                'insert into tb_cliente (email, nome_cliente, endereco, telefone) values(?, ?, ?, ?)',
                 [cliente.email, cliente.nome_cliente, cliente.endereco, cliente.telefone]
             );
             return resultado.insertId;
@@ -28,12 +27,12 @@ class ModeloCliente{
         }
     }
 
-    async obterClientePorId(id) {
+    async obterClientePorId(id_cliente) {
         const connection = await pool.getConnection();
         try{
             const [registros] = await connection.query(
                 'select * from tb_cliente where id_cliente = ?',
-                [id]
+                [id_cliente]
             );
             return registros[0];
         } finally {
@@ -41,12 +40,12 @@ class ModeloCliente{
         }
     }
 
-    async atualizarCliente(id, cliente) {
+    async atualizarCliente(id_cliente, cliente) {
         const connection = await pool.getConnection();
         try{
             await connection.query(
-                'update tb_cliente set email = ?,nome_cliente = ?, endereco = ?, telefone = ? where id = ?',
-                [cliente.email, cliente.nome_cliente, cliente.endereco, cliente.telefone, id]
+                'update tb_cliente set email = ?,nome_cliente = ?, endereco = ?, telefone = ? where id_cliente = ?',
+                [cliente.email, cliente.nome_cliente, cliente.endereco, cliente.telefone, id_cliente]
             );
             return true;
         } finally {
@@ -54,12 +53,12 @@ class ModeloCliente{
         }
     }
 
-    async excluirCliente(id) {
+    async excluirCliente(id_cliente) {
         const connection = await pool.getConnection();
         try{
             await connection.query(
                 'delete from tb_cliente where id_cliente = ?',
-                [id]
+                [id_cliente]
             );
             return true;
         } finally {
