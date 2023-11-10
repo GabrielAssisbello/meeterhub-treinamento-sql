@@ -1,17 +1,9 @@
 const mysql = require('mysql2/promise');
 
 class ModeloCarrinho{
-    constructor(){
-        this.pool = mysql.createPool({
-            host:'127.0.0.1',
-            user: 'root',
-            password:'gabriel',
-            database:'db_cliente',
-        });
-    }
 
     async criarCarrinho(carrinho) {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             const [resultado] = await connection.query(
                 'insert into tb_carrinho (id_carrinho, id_cliente) values(?, ?)',
@@ -24,7 +16,7 @@ class ModeloCarrinho{
     }
 
     async obterTodosCarrinho() {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             const [registros] = await connection.query(
                 'select * from tb_carrinho'
@@ -36,10 +28,10 @@ class ModeloCarrinho{
     }
 
     async obterCarrinhoPorId(id) {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             const [registros] = await connection.query(
-                'select * from tb_carrinho where id = ?',
+                'select * from tb_carrinho where id_carrinho = ?',
                 [id]
             );
             return registros[0];
@@ -49,11 +41,11 @@ class ModeloCarrinho{
     }
 
     async atualizarCarrinho(id, carrinho) {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             await connection.query(
                 'update tb_carrinho set id.carrinho = ? , id_cliente = ? where id = ?',
-                [carrinho.id_carrinho, carrinho.id_cliente]
+                [carrinho.id_carrinho, carrinho.id_cliente, id]
             );
             return true;
         } finally {
@@ -62,10 +54,10 @@ class ModeloCarrinho{
     }
 
     async excluirCarrinho(id) {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             await connection.query(
-                'delete from tb_carrinho where id = ?',
+                'delete from tb_carrinho where id_carrinho = ?',
                 [id]
             );
             return true;

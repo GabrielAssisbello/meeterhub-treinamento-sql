@@ -1,17 +1,9 @@
 const mysql = require('mysql2/promise');
 
 class ModeloDeposito{
-    constructor(){
-        this.pool = mysql.createPool({
-            host:'127.0.0.1',
-            user: 'root',
-            password:'gabriel',
-            database:'db_cliente',
-        });
-    }
-
+   
     async criarDeposito(deposito) {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             const [resultado] = await connection.query(
                 'insert into tb_deposito (id_deposito, endereco, telefone, id_livro) values(?, ?, ?, ?)',
@@ -24,7 +16,7 @@ class ModeloDeposito{
     }
 
     async obterTodosDeposito() {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             const [registros] = await connection.query(
                 'select * from tb_deposito'
@@ -36,10 +28,10 @@ class ModeloDeposito{
     }
 
     async obterDepositoPorId(id) {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             const [registros] = await connection.query(
-                'select * from tb_deposito where id = ?',
+                'select * from tb_deposito where id_deposito = ?',
                 [id]
             );
             return registros[0];
@@ -49,11 +41,11 @@ class ModeloDeposito{
     }
 
     async atualizarDeposito(id, deposito) {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             await connection.query(
                 'update tb_deposito set id_deposito = ? , endereco = ? , telefone = ? , id_livro = ? where id = ?',
-                [deposito.id_deposito, deposito.endereco, deposito.telefone, deposito.id_livro]
+                [deposito.id_deposito, deposito.endereco, deposito.telefone, deposito.id_livro, id]
             );
             return true;
         } finally {
@@ -62,10 +54,10 @@ class ModeloDeposito{
     }
 
     async excluirDeposito(id) {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             await connection.query(
-                'delete from tb_deposito where id = ?',
+                'delete from tb_deposito where id_deposito = ?',
                 [id]
             );
             return true;

@@ -1,17 +1,9 @@
 const mysql = require('mysql2/promise');
 
 class ModeloAutor{
-    constructor(){
-        this.pool = mysql.createPool({
-            host:'127.0.0.1',
-            user: 'root',
-            password:'gabriel',
-            database:'db_cliente',
-        });
-    }
 
     async criarAutor(autor) {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             const [resultado] = await connection.query(
                 'insert into tb_autor (nome_autor, endereco, url, id_editora) values(?, ?, ?, ?)',
@@ -24,7 +16,7 @@ class ModeloAutor{
     }
 
     async obterTodosAutores() {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             const [registros] = await connection.query(
                 'select * from tb_autor'
@@ -36,7 +28,7 @@ class ModeloAutor{
     }
 
     async obterAutorPorId(id) {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             const [registros] = await connection.query(
                 'select * from tb_autor where id = ?',
@@ -49,11 +41,11 @@ class ModeloAutor{
     }
 
     async atualizarAutor(id, autor) {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             await connection.query(
                 'update tb_autor set nome_autor = ?, endereco = ?, URL = ?, id_editora = ? where id = ?',
-                [autor.nome_autor, autor.endereco, autor.url, autor.id_editora]
+                [autor.nome_autor, autor.endereco, autor.url, autor.id_editora, id]
             );
             return true;
         } finally {
@@ -62,10 +54,10 @@ class ModeloAutor{
     }
 
     async excluirAutor(id) {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             await connection.query(
-                'delete from tb_autor where id = ?',
+                'delete from tb_autor where id_autor = ?',
                 [id]
             );
             return true;

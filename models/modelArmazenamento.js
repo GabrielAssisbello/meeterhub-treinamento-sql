@@ -1,17 +1,9 @@
 const mysql = require('mysql2/promise');
 
 class ModeloArmazenamento{
-    constructor(){
-        this.pool = mysql.createPool({
-            host:'127.0.0.1',
-            user: 'root',
-            password:'gabriel',
-            database:'db_cliente',
-        });
-    }
-
+   
     async criarArmazenamento(armazenamento) {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             const [resultado] = await connection.query(
                 'insert into tb_armazenamento (id.livro, id_deposito) values(?, ?)',
@@ -24,7 +16,7 @@ class ModeloArmazenamento{
     }
 
     async obterTodosArmazenamento() {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             const [registros] = await connection.query(
                 'select * from tb_armazenamento'
@@ -36,10 +28,10 @@ class ModeloArmazenamento{
     }
 
     async obterArmazenamentoPorId(id) {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             const [registros] = await connection.query(
-                'select * from tb_armazenamento where id = ?',
+                'select * from tb_armazenamento where id_armazenamento = ?',
                 [id]
             );
             return registros[0];
@@ -48,12 +40,12 @@ class ModeloArmazenamento{
         }
     }
 
-    async atualizarArmazenamento(id, cliente) {
-        const connection = await this.pool.getConnection();
+    async atualizarArmazenamento(id, armazenamento) {
+        const connection = await pool.getConnection();
         try{
             await connection.query(
                 'update tb_armazenamento set id.livro = ? , id_deposito = ? where id = ?',
-                [armazenamento.id.livro, armazenamento.id_deposito]
+                [armazenamento.id.livro, armazenamento.id_deposito, id]
             );
             return true;
         } finally {
@@ -62,10 +54,10 @@ class ModeloArmazenamento{
     }
 
     async excluirArmazenamento(id) {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             await connection.query(
-                'delete from tb_armazenamento where id = ?',
+                'delete from tb_armazenamento where id_armazenamento = ?',
                 [id]
             );
             return true;

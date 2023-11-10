@@ -1,17 +1,9 @@
 const mysql = require('mysql2/promise');
 
 class ModeloCliente{
-    constructor(){
-        this.pool = mysql.createPool({
-            host:'127.0.0.1',
-            user: 'root',
-            password:'gabriel',
-            database:'db_cliente',
-        });
-    }
-
+    
     async criarCliente(cliente) {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             const [resultado] = await connection.query(
                 'insert into tb_cliente (email, nome_cliente, endereco, telefone) values(?, ?, ?, ?)',
@@ -24,7 +16,7 @@ class ModeloCliente{
     }
 
     async obterTodosClientes() {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             const [registros] = await connection.query(
                 'select * from tb_cliente'
@@ -36,10 +28,10 @@ class ModeloCliente{
     }
 
     async obterClientePorId(id) {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             const [registros] = await connection.query(
-                'select * from tb_cliente where id = ?',
+                'select * from tb_cliente where id_cliente = ?',
                 [id]
             );
             return registros[0];
@@ -49,7 +41,7 @@ class ModeloCliente{
     }
 
     async atualizarCliente(id, cliente) {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             await connection.query(
                 'update tb_cliente set email = ?,nome_cliente = ?, endereco = ?, telefone = ? where id = ?',
@@ -62,10 +54,10 @@ class ModeloCliente{
     }
 
     async excluirCliente(id) {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             await connection.query(
-                'delete from tb_cliente where id = ?',
+                'delete from tb_cliente where id_cliente = ?',
                 [id]
             );
             return true;

@@ -53,7 +53,7 @@ class ModeloLivro{
         try{
             await connection.query(
                 'update tb_livro set livro_id = ?, ISBN = ?, titulo = ?, ano = ?, preço = ?, id_autor = ?, id_editora = ? where id = ?',
-                [livro.id_livro, livro.ISBN, livro.titulo, livro.ano, livro.preço, livro.id_autor, livro.id_editora]
+                [livro.id_livro, livro.ISBN, livro.titulo, livro.ano, livro.preço, livro.id_autor, livro.id_editora, id]
             );
             return true;
         } finally {
