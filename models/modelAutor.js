@@ -1,4 +1,5 @@
 const mysql = require('mysql2/promise');
+const pool = require('../pool')
 
 class ModeloAutor{
 
@@ -31,7 +32,7 @@ class ModeloAutor{
         const connection = await pool.getConnection();
         try{
             const [registros] = await connection.query(
-                'select * from tb_autor where id = ?',
+                'select * from tb_autor where id_autor = ?',
                 [id]
             );
             return registros[0];

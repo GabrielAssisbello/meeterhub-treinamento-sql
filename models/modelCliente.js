@@ -1,4 +1,5 @@
 const mysql = require('mysql2/promise');
+const pool = require('../pool')
 
 class ModeloCliente{
     
@@ -6,7 +7,7 @@ class ModeloCliente{
         const connection = await pool.getConnection();
         try{
             const [resultado] = await connection.query(
-                'insert into tb_cliente (email, nome_cliente, endereco, telefone) values(?, ?, ?, ?)',
+                'insert into tb_cliente (id_cliente, email, nome_cliente, endereco, telefone) values(?, ?, ?, ?, ?)',
                 [cliente.email, cliente.nome_cliente, cliente.endereco, cliente.telefone]
             );
             return resultado.insertId;
