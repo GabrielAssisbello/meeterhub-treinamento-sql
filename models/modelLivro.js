@@ -2,17 +2,9 @@ const mysql = require('mysql2/promise');
 const pool = require('../pool')
 
 class ModeloLivro{
-    constructor(){
-        this.pool = mysql.createPool({
-            host:'127.0.0.1',
-            user: 'root',
-            password:'gabriel',
-            database:'db_cliente',
-        });
-    }
-
+   
     async criarLivro(livro) {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             const [resultado] = await connection.query(
                 'insert into tb_editora (id_livro, ISBN, titulo, ano, preço, id_autor, id_editora) values(?, ?, ?, ?)',
@@ -25,7 +17,7 @@ class ModeloLivro{
     }
 
     async obterTodosLivros() {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             const [registros] = await connection.query(
                 'select * from tb_livro'
@@ -37,10 +29,10 @@ class ModeloLivro{
     }
 
     async obterLivroPorId(id) {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             const [registros] = await connection.query(
-                'select * from tb_livro where id = ?',
+                'select * from tb_livro where id_livro = ?',
                 [id]
             );
             return registros[0];
@@ -50,7 +42,7 @@ class ModeloLivro{
     }
 
     async atualizarLivro(id, livro) {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             await connection.query(
                 'update tb_livro set livro_id = ?, ISBN = ?, titulo = ?, ano = ?, preço = ?, id_autor = ?, id_editora = ? where id = ?',
@@ -63,10 +55,10 @@ class ModeloLivro{
     }
 
     async excluirLivro(id) {
-        const connection = await this.pool.getConnection();
+        const connection = await pool.getConnection();
         try{
             await connection.query(
-                'delete from tb_livro where id = ?',
+                'delete from tb_livro where id_livro = ?',
                 [id]
             );
             return true;
